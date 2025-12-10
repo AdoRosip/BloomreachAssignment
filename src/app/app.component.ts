@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FilterEventsService } from './services/filter-events.service';
+import { Observable } from 'rxjs';
+import { EventDefinition } from './contracts';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'bloomreach-filter';
+
+  events$!:Observable<EventDefinition[]>
+
+  constructor(private eventsService:FilterEventsService){
+
+  }
+
+
+  ngOnInit() {
+    this.events$ = this.eventsService.getFilters()
+  }
 }

@@ -1,0 +1,43 @@
+<div class="funnel-step">
+  <div class="funnel-header">
+    <span class="funnel-title">
+      {{ step?.name }}:
+    </span>
+
+    <!-- Replace with icons later if i have time-->
+    <div class="funnel-actions">
+      <button class="link" (click)="duplicate.emit()">Copy</button>
+      <button class="link discard" (click)="delete.emit()">Delete</button>
+    </div>
+  </div>
+
+  <div class="event-attribute-container">
+      <div class="funnel-row">
+    <select
+      class="funnel-event-select"
+      [ngModel]="step.eventType"
+      (ngModelChange)="onEventTypeChange($event)"
+    >
+      <option [ngValue]="null" disabled>Select event</option>
+      <option *ngFor="let e of events" [value]="e.type">
+        {{ e.type }}
+      </option>
+    </select>
+  </div>
+
+  <div class="funnel-attributes">
+    <app-attribute-filter-row
+      *ngFor="let f of step.filters; trackBy: trackByFilter; let isLast = last; let isFirst = first"
+      [filter]="f"
+      [attributes]="availableAttributes"
+      (filterChange)="onFilterChange(f.id, $event)"
+      (remove)="removeFilter(f.id)"
+      [isEventSelected]="isEventSelected"
+      [isLastFilter]="isLast"
+      [isFirstFilter]="isFirst"
+      [totalFilters]="step.filters.length"
+      (addMoreFilter)="addFilter()"
+    ></app-attribute-filter-row>
+  </div>
+  </div>
+</div>

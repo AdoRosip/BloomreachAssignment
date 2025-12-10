@@ -1,0 +1,59 @@
+// :host{
+//   background-color: white;
+//   height: 250px;
+//   width: 90%;
+//   display: flex;
+//   flex-direction: column;
+// }
+
+.funnel-step {
+  background: #fafafa;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+
+.funnel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .funnel-title {
+    font-weight: 400;
+  }
+
+  .funnel-actions {
+    display: flex;
+    gap: 12px;
+  }
+}
+
+.event-attribute-container{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.funnel-row {
+  margin-bottom: 16px;
+
+  select.funnel-event-select {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 220px;
+  }
+}
+
+.funnel-attributes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.refine {
+  margin-top: 12px;
+  font-size: 14px;
+}

@@ -1,0 +1,95 @@
+<div class="attr-row">
+ <button (click)="toggleAttributeSelection()" class="link" *ngIf="!isAttributeRquested && isEventSelected && isFirstFilter">
+  + Add an event attribute
+ </button>
+
+ <ng-container *ngIf="isAttributeRquested">
+    <select
+    name="attribute-selection"
+    class="attr-select"
+    [ngModel]="filter.attribute"
+    (ngModelChange)="onAttributeChange($event)"
+  >
+    <option [ngValue]="null" disabled>Select attribute</option>
+    <option *ngFor="let attr of attributes" [value]="attr.property">
+      {{ attr.property }}
+    </option>
+  </select>
+<!-- Maybe reate another compoennt and use content projection for the searchbar and the operator type selection...TODO if time -->
+  <div class="operator-wrapper" *ngIf="filter.attribute">
+    <div
+      class="custom-select"
+      [class.disabled]="!filter.attribute"
+      [class.open]="isDropdownOpen"
+    >
+      <div class="select-trigger" (click)="toggleDropdown()">
+        <span>{{ operatorDisplayText }}</span>
+        <span class="arrow">▼</span>
+      </div>
+
+      <div class="dropdown-panel" *ngIf="isDropdownOpen">
+        <div class="type-switcher">
+          <button
+            type="button"
+            [class.active]="selectedType === 'string'"
+            (click)="switchType('string'); $event.stopPropagation()"
+          >
+            STRING
+          </button>
+          <button
+            type="button"
+            [class.active]="selectedType === 'number'"
+            (click)="switchType('number'); $event.stopPropagation()"
+          >
+            NUMBER
+          </button>
+        </div>
+
+        <div class="operator-options">
+          <div
+            *ngFor="let op of operatorOptions"
+            class="option"
+            (click)="onOperatorChange(op)"
+          >
+            {{ op }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </ng-container>
+
+
+  <ng-container *ngIf="filter.attribute">
+    <input
+      class="value-input"
+      [type]="selectedType === 'number' ? 'number' : 'text'"
+      [ngModel]="filter.value"
+      (ngModelChange)="onValueChange($event)"
+      [placeholder]="isBetween ? 'From' : 'Value'"
+      placeholder="Select a value"
+    />
+
+    <ng-container *ngIf="isBetween">
+      <span>and</span>
+      <input
+        class="value-input"
+        [type]="selectedType === 'number' ? 'number' : 'text'"
+        [ngModel]="filter.valueTo"
+        (ngModelChange)="onValueToChange($event)"
+        placeholder="To"
+      />
+    </ng-container>
+  </ng-container>
+
+
+  <button *ngIf="isAttributeRquested" class="icon-btn" (click)="onRemove()">🗑</button>
+</div>
+
+<button
+  *ngIf="isLastFilter && isAttributeRquested"
+  class="link refine"
+  (click)="addMoreFilter.emit()"
+>
+  Refine more
+</button>

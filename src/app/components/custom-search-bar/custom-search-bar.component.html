@@ -1,0 +1,12 @@
+<div class="searchable-dropdown">
+  <div class="search-input-wrapper">
+    <input
+      type="text"
+      class="search-input"
+      [placeholder]="placeholder"
+      [(ngModel)]="searchTerm"
+      (focus)="isOpen = true"
+      (input)="onSearch(searchTerm)"
+    />
+  </div>
+</div>

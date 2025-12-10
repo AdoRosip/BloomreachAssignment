@@ -1,0 +1,26 @@
+<div class="customer-filter">
+  <div class="cf-header">
+    <h2>Customer Filter</h2>
+    <button class="link discard" (click)="discardAllSteps()">Discard filters</button>
+  </div>
+
+  <div class="funnel-steps">
+    <app-funnel-step
+      *ngFor="let step of state.steps; trackBy: trackByStep"
+      [step]="step"
+      [events]="events"
+      (stepChange)="onStepChange(step.id, $event)"
+      (delete)="deleteStep(step.id)"
+      (duplicate)="duplicateStep(step.id)"
+    ></app-funnel-step>
+
+    <button class="link add-step" (click)="addFunnelStep()">
+      + ADD FUNNEL STEP
+    </button>
+  </div>
+
+  <div class="cf-footer">
+    <button class="primary" (click)="applyFilters()">Apply filters</button>
+  </div>
+</div>
+

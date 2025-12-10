@@ -1,0 +1,145 @@
+.attr-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .link {
+    margin-top: 8px;
+  }
+}
+
+.attr-select,
+.operator-select,
+.value-input {
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.attr-select,
+.operator-select {
+  min-width: 160px;
+}
+
+.value-input {
+  min-width: 120px;
+}
+
+// Custom dropdown
+.operator-wrapper {
+  position: relative;
+}
+
+.custom-select {
+  position: relative;
+  min-width: 200px;
+
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.select-trigger {
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    border-color: #999;
+  }
+
+  .arrow {
+    font-size: 10px;
+    transition: transform 0.2s;
+  }
+}
+
+.custom-select.open .select-trigger .arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.type-switcher {
+  display: flex;
+  padding: 8px;
+  gap: 4px;
+  border-bottom: 1px solid #eee;
+
+  button {
+    flex: 1;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 400;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    border: none;
+    border-bottom: 2px solid transparent;
+
+    &.active {
+      background: white;
+      border-bottom: 2px solid #ffd500;
+    }
+  }
+}
+
+.operator-options {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.option {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background: #ffd500;
+  }
+
+  &:active {
+    background: #e9ecef;
+  }
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  color: #d34040;
+}
+
+.refine {
+  padding: 8px;
+}
+
+option:hover{
+  background-color: #ffd500;
+}
